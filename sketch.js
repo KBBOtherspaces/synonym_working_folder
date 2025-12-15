@@ -49,13 +49,30 @@ let clickCount = 0;
 let img;
 let position;
 let offset;
-
-function preload() {
-    img = loadImage('assets/images/metropolis-clock-1.png');
+let bgSwitch = true;
+let bg1;
+let bg2;
+async function preload() {
+    img = await loadImage('assets/images/metropolis-clock-1.png', 'assets/images/metropolis-clock-2.png');
 }
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background(img);
+
+    // Get background elements
+    bg1 = document.getElementById('bg1');
+    bg2 = document.getElementById('bg2');
+
+    // Set background images once
+    bg1.style.backgroundImage = 'url("assets/images/metropolis-clock-1.png")';
+    bg1.style.backgroundSize = 'cover';
+    bg1.style.backgroundPosition = 'center';
+
+    bg2.style.backgroundImage = 'url("assets/images/metropolis-clock-2.png")';
+    bg2.style.backgroundSize = 'cover';
+    bg2.style.backgroundPosition = 'center';
+
+    // Start the background transition (only once)
+    startBackgroundTransition();
 }
 function mousePressed() {
     clickCount = clickCount + 1;
@@ -63,15 +80,20 @@ function mousePressed() {
     next_word = words[clickCount + 1];
 
     textFont('monospace');
-    textSize(22);
+    textSize(28);
     fill('black');
     textStyle(BOLD);
-    textAlign(LEFT, TOP);
-    text(current_word, 100, 60 * clickCount, 300);
-}   
-function draw() { }
+    text(current_word, windowWidth * 0.125, 50 * clickCount, windowWidth * 0.9, windowHeight);
 
-
+}
+function draw() {
+    if (clickCount > [10] == true) {
+    } else {
+        text(words[next_word], width / 3, 80);
+        textSize(30);
+        textStyle('bold');
+    }
+}
 //background(0);
 
 //     if (clickCount < words.length){
@@ -82,7 +104,19 @@ function draw() { }
 //     if (clickCount < words.length -1){
 //       text(words[next_word], width/2, 300);
 //     }
-
+//background images shift
+function startBackgroundTransition() {
+    setInterval(() => {
+        if (bgSwitch) {
+            bg2.style.opacity = '1';
+            bg1.style.opacity = '0';
+        } else {
+            bg1.style.opacity = '1';
+            bg2.style.opacity = '0';
+        }
+        bgSwitch = !bgSwitch;
+    }, 12000); // Switch every 12 sec
+}
 
 
 function windowResized() {
