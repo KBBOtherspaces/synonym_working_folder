@@ -1,20 +1,18 @@
+body, html {
+  height: 100%;
+  font-family: 'Josefin Sans', sans-serif;
+
+  margin: 0;
+  display: flex;
+}
 canvas {
     margin: 0;
     padding: 0;
-    z-index: 10;
+    z-index: 5;
   
-  }
-  
-  body {
-    overflow: hidden;
-    font-family: monospace, serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-  }
-  
+}
+
+
   #background {
     position: fixed;
     top: 0;
@@ -34,7 +32,7 @@ canvas {
     height: 100%;
     background-size: cover;
     background-position: center;
-    transition: opacity 6s ease-in-out;
+    transition: 6s ease-in-out;
   }
   
   #bg1 {
@@ -46,3 +44,32 @@ canvas {
     opacity: 0;
     z-index: 2;
   }
+  .button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    font-style: bold;
+    color: rgb(18, 15, 15);
+    background: rgb(121, 3, 52);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0.6;
+  }
+
+  .button:hover {
+    opacity: 1;
+    background: rgb(18, 15, 15);
+  }
+
+
+  

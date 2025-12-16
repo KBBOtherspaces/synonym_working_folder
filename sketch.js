@@ -43,6 +43,7 @@ let words = [
     "perform CPR ",
     "wake up."
 ];
+let button;
 let current_word;
 let next_word;
 let clickCount = 0;
@@ -52,6 +53,12 @@ let offset;
 let bgSwitch = true;
 let bg1;
 let bg2;
+let xPos;
+let yPos;
+let mouseIsPressed;
+let randomWords;
+let cumulativeY = 50;
+
 async function preload() {
     img = await loadImage('assets/images/metropolis-clock-1.png', 'assets/images/metropolis-clock-2.png');
 }
@@ -79,21 +86,44 @@ function mousePressed() {
     current_word = words[clickCount % words.length];
     next_word = words[clickCount + 1];
 
-    textFont('monospace');
-    textSize(28);
-    fill('black');
+    textFont('Josefin Sans');
+    let size = random(28, 54);
+    textSize(size);
+    fill(random(20, 160));
     textStyle(BOLD);
-    text(current_word, windowWidth * 0.125, 50 * clickCount, windowWidth * 0.9, windowHeight);
+
+    // Add spacing based on text size to prevent overlap
+    cumulativeY += size + 20;
+
+    // When text goes off screen, reset to top
+    if (cumulativeY > windowHeight) {
+        cumulativeY = 50;
+    }
+
+    text(current_word, windowWidth * 0.125, cumulativeY, windowWidth * 0.9, windowHeight);
 
 }
 function draw() {
     if (clickCount > [10] == true) {
     } else {
-        text(words[next_word], width / 3, 80);
-        textSize(30);
-        textStyle('bold');
+        if (mouseIsPressed === true) {
+            let grayValue = random(130, 245);
+            let transparency = random(70, 152);
+            fill(grayValue, transparency);
+            textSize(random(28, 100));
+            text(random(words), random(width), random(height));
+            let next_word = random(words);
+
+
+
+            frameRate(random(8, 26));
+
+
+            //mouseIsPressed
+        }
     }
 }
+
 //background(0);
 
 //     if (clickCount < words.length){
@@ -127,7 +157,6 @@ function windowResized() {
 
 
 
-
 ////// BELOW IS THE CODE FOR CAROLANN TV P5JS POEM PIECE
 /// let myFont;
 // let position;
@@ -148,8 +177,8 @@ function windowResized() {
 //// }
 
 
-////. function draw() {
-//// background(img, 720, 867)
+//// function draw() {
+//// 
 
 //// if (mouseIsPressed === true) {
 ////   let grayValue = random(130, 245);
