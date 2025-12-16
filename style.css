@@ -63,9 +63,13 @@ canvas {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    opacity: 0.6;
+    opacity: 0.8;
   }
 
+  .button:hover {
+    background: rgb(121, 3, 52);
+    opacity: 0.8;
+  }
   
 
 
